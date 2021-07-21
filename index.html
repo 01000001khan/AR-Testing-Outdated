@@ -68,15 +68,16 @@
     
     var finishName = document.querySelector('#color-controls').text;
     
-    if (finishName === "WoodTest"){
+    if (String(finishName) === "WoodTest"){
       console.log("Wood");
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("/AR-Testing/assets/textures/wood.jpg");
     }
     else
     {
       console.log("Not wood");
       //material['baseColorTexture'].setTexture("/assets/textures/wood.jpg"); 
       
-      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("/AR-Testing/assets/textures/wood.jpg");
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("/AR-Testing/assets/textures/blank.jpg");
     }
     
   }
