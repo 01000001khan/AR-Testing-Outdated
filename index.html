@@ -62,7 +62,7 @@
     console.log('Changing color to: ', color);
     
     
-    const material = modelViewerObject.model.materials[0];
+    let material = modelViewerObject.model.materials[0];
     material.pbrMetallicRoughness.setBaseColorFactor(color);
     
     
@@ -75,7 +75,8 @@
     {
       console.log("Not wood");
       //material['baseColorTexture'].setTexture("/assets/textures/wood.jpg"); 
-      material.pbrMetallicRoughness['baseColorTexture'].texture.src = "/assets/textures/wood.jpg";
+      
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("/assets/textures/wood.jpg");
     }
     
   }
