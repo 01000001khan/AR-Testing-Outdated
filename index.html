@@ -47,6 +47,10 @@
     
   const modelViewerColor = document.querySelector("model-viewer#color");
 
+    
+  let applyPBRTexture = (channel, event) => {
+    material.pbrMetallicRoughness[channel].texture.source.setURI(event.target.value);
+  }
   //called on change in colour selection list
   function updateCol(){
     const colorString = document.querySelector('#color-controls').value;
@@ -60,7 +64,7 @@
         .map(numberString => parseFloat(numberString));
 
     console.log('Changing color to: ', color);
-    const [material] = modelViewerColor.model.materials;
+    const material = modelViewerColor.model.materials[0];
     material.pbrMetallicRoughness.setBaseColorFactor(color);
     
     var finishName = document.querySelector('#color-controls').text;
