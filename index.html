@@ -67,8 +67,8 @@
     
     
     var finishName = document.querySelector('#color-controls').text;
-    
-    if (String(finishName) === "WoodTest"){
+    console.log(finishName);
+    if (finishName === "WoodTest"){
       console.log("Wood");
       material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("/AR-Testing/assets/textures/wood.jpg");
     }
