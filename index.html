@@ -18,7 +18,7 @@
   </model-viewer>-->
   <!--Testing model.  Shiny Sci-fi robot helmet-->
 
-  <model-viewer id="color" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/persona7F.glb">
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/persona7F.glb">
   <!-- Persona 7F -->      
     <!--
     <div class="controls" ,="" id="color-controls">
@@ -45,9 +45,7 @@
   </model-viewer>
   <script>
     
-  const modelViewerColor = document.querySelector("model-viewer#color");
-  const modelViewerTexture = document.querySelector("model-viewer#Outer Body");
-
+  const modelViewerObject = document.getElementById("speaker");
     
   //called on change in colour selection list
   function updateCol(){
@@ -62,40 +60,26 @@
         .map(numberString => parseFloat(numberString));
 
     console.log('Changing color to: ', color);
-    const material = modelViewerColor.model.materials[0];
+    
+    
+    const material = modelViewerObject.model.materials[0];
     material.pbrMetallicRoughness.setBaseColorFactor(color);
     
-    
-    const materialT = modelViewerColor.model.materials[0];
-    
-    let applyPBRTexture = (channel, path) => {
-      materialT.pbrMetallicRoughness[channel].texture.source.setURL(path);
-    }
-    let createAndApplyTexture = async (channel, event) => {
-      if(event == "None"){
-        // Clears the texture.
-        materialT[channel].setTexture(null);
-      }else if(event) {
-        // Creates a new texture.
-        let texture = await modelViewerTexture.createTexture(event);
-        // Applies the new texture to the specified channel.
-        materialT[channel].setTexture(texture);
-      } 
-    }
     
     var finishName = document.querySelector('#color-controls').text;
     
     if (finishName == "WoodTest"){
-      applyPBRTexture('baseColorTexture', "/assets/textures/wood.jpg");
-      
+      console.log("Wood");
     }
     else
     {
-      material['baseColorTexture'].setTexture("/assets/textures/wood.jpg"); 
-      //applyPBRTexture('baseColorTexture', "/assets/textures/wood.jpg");
+      console.log("Not wood");
+      //material['baseColorTexture'].setTexture("/assets/textures/wood.jpg"); 
+      material.pbrMetallicRoughness['baseColorTexture'].setTexture("/assets/textures/wood.jpg");
     }
     
   }
+
   
   /*
   document.querySelector('#color-controls').addEventListener('click', (event) => {//this works for buttons
