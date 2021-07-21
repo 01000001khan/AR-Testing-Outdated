@@ -16,11 +16,8 @@
 <body style="background-color:rgb(0, 20, 50);">
   <!--<model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate skybox-image="assets/spruit_sunrise_1k_HDR.hdr" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Embedded/DamagedHelmet.gltf">
   </model-viewer>-->
+  <!--Testing model.  Shiny Sci-fi robot helmet-->
 
-
-  
-  
-  
   <model-viewer id="color" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/persona7F.glb">
   <!-- Persona 7F -->      
     <!--
@@ -34,7 +31,7 @@
     </div>
     -->
     
-    <select class="controls" ,="" id="color-controls" onchange="updateCol();">
+    <select class="controls" ,="" id="color-controls" onchange="updateCol();" >
       <option value="0.03,0.06,0.10,1">Blue</option>
       <option value="1,1,0.8,1">White</option>
       <option value="0.09,0.09,0.09,1" selected="selected">Gray</option>
@@ -42,35 +39,13 @@
       <option value="0,0.2,0.5,1">Blue Premium Finish</option>
       <option value="0.6,0,0,1">Red Premium Finish</option>
     </select>
-    <button id="update">Update Colour</button>
     
   </model-viewer>
   <script>
     
   const modelViewerColor = document.querySelector("model-viewer#color");
-  const button = document.querySelector("#update");
-  const sel = document.querySelector("#color-controls");
-  
-   
-  /*button.addEventListener('click', function (e) {
-    console.log("Changing colour");
-    
-    if (document.createEventObject){
-      // dispatch for IE
-      var evt = document.createEventObject();
-      return sel.fireEvent('on'+event,evt)
-    }
-    else{
-      // dispatch for firefox + others
-      var evt = document.createEvent("HTMLEvents");
-      evt.initEvent(change, true, true ); // event type,bubbling,cancelable
-      return !sel.dispatchEvent(evt);
-    }
-  });*/
-    
-    
-  <!--document.querySelector('#color-controls').addEventListener('click', (event) => {<!--this works for buttons-->
 
+  //called on change in colour selection list
   function updateCol(){
     const colorString = document.querySelector('#color-controls').value;
     
@@ -87,14 +62,10 @@
     material.pbrMetallicRoughness.setBaseColorFactor(color);
   }
   
-    /*
-  sel.onChange = (event) => {
+  /*
+  document.querySelector('#color-controls').addEventListener('click', (event) => {//this works for buttons
     const colorString = event.target.dataset.color;
 
-    
-    
-    
-    
     if (!colorString) {
       return;
     }
