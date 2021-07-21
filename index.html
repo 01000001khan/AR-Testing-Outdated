@@ -45,8 +45,8 @@
   </model-viewer>
   <script>
     
-  const modelViewerColor = document.querySelector("model-viewer");
-  const modelViewerTexture = document.querySelector("model-viewer");
+  const modelViewerColor = document.querySelector("model-viewer#color");
+  const modelViewerTexture = document.querySelector("model-viewer#texture");
 
     
   //called on change in colour selection list
@@ -66,20 +66,20 @@
     material.pbrMetallicRoughness.setBaseColorFactor(color);
     
     
-    const material = modelViewerTexture.model.materials[0];
+    const materialT = modelViewerTexture.model.materials[0];
     
     let applyPBRTexture = (channel, path) => {
-      material.pbrMetallicRoughness[channel].texture.source.setURI(path);
+      materialT.pbrMetallicRoughness[channel].texture.source.setURI(path);
     }
     let createAndApplyTexture = async (channel, event) => {
       if(event == "None"){
         // Clears the texture.
-        material[channel].setTexture(null);
+        materialT[channel].setTexture(null);
       }else if(event) {
         // Creates a new texture.
         let texture = await modelViewerTexture.createTexture(event);
         // Applies the new texture to the specified channel.
-        material[channel].setTexture(texture);
+        materialT[channel].setTexture(texture);
       } 
     }
     
