@@ -23,6 +23,7 @@
   
   <model-viewer id="color" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/persona7F.glb">
   <!-- Persona 7F -->      
+    <!--
     <div class="controls" ,="" id="color-controls">
       <button data-color="0.03,0.06,0.10,1">Blue</button>
       <button data-color="1,1,0.8,1">White</button>
@@ -31,6 +32,7 @@
       <button data-color="0,0.2,0.5,1">These can/should be in a drop down list</button>
 
     </div>
+    -->
     
     <select id="controls">
       <option data-color="0.03,0.06,0.10,1">Blue</option>
@@ -46,7 +48,7 @@
     
   const modelViewerColor = document.querySelector("model-viewer#color");
 
-  document.querySelector('#color-controls').addEventListener('click', (event) => {
+  document.querySelector('#color-controls').addEventListener('change', (event) => {
     const colorString = event.target.dataset.color;
 
     if (!colorString) {
