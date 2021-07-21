@@ -14,7 +14,7 @@
   </style>
 </head>
 <body style="background-color:rgb(0, 20, 50);">
-  <!--<model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate skybox-image="assets/spruit_sunrise_1k_HDR.hdr" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Embedded/DamagedHelmet.gltf">
+  <!--<model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate skybox-image="assets/textures/spruit_sunrise_1k_HDR.hdr" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Embedded/DamagedHelmet.gltf">
   </model-viewer>-->
   <!--Testing model.  Shiny Sci-fi robot helmet-->
 
@@ -38,6 +38,8 @@
       <option value="1,0.5,0,1">Yellow Premium Finish</option>
       <option value="0,0.2,0.5,1">Blue Premium Finish</option>
       <option value="0.6,0,0,1">Red Premium Finish</option>
+      
+      <option value="1,1,1,1">Wood (not a persona finish)</option>
     </select>
     
   </model-viewer>
@@ -60,6 +62,17 @@
     console.log('Changing color to: ', color);
     const [material] = modelViewerColor.model.materials;
     material.pbrMetallicRoughness.setBaseColorFactor(color);
+    
+    var finishName = document.querySelector('#color-controls').text;
+    
+    if (finishName.includes("Wood")){
+      material.pbrMetallicRoughness[baseColorTexture].texture.source.setURI("/assets/textures/wood.jpg");
+    }
+    else
+    {
+       material.pbrMetallicRoughness[baseColorTexture].texture.source.setURI("/assets/textures/blank.jpg");
+    }
+    
   }
   
   /*
