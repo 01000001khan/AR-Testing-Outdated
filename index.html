@@ -74,10 +74,14 @@
     
     if (finishName == "WoodTest"){
       applyPBRTexture('baseColorTexture', "/assets/textures/wood.jpg");
+      
     }
     else
     {
       material.pbrMetallicRoughness[baseColorTexture].texture.source.setURI("/assets/textures/blank.jpg");
+      
+      let texture = await modelViewerTexture.createTexture("/assets/textures/wood.jpg");
+      material[channel].setTexture(texture);
     }
     
   }
