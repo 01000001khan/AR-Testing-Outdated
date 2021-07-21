@@ -52,8 +52,7 @@
   const sel = document.querySelector("#color-controls");
   
   button.addEventListener('click', function (e) {
-    sel.options[1].selected = true;
-    
+    console.log("Color changed");
     // firing the event properly according to StackOverflow
     // http://stackoverflow.com/questions/2856513/how-can-i-trigger-an-onchange-event-manually
     if ("createEvent" in document) {
@@ -67,7 +66,8 @@
   });
     
     
-  document.querySelector('#color-controls').addEventListener('change', (event) => {
+  <!--document.querySelector('#color-controls').addEventListener('change', (event) => {-->
+  sel.addEventListener('change', (event) => {
     const colorString = event.target.dataset.color;
 
     
