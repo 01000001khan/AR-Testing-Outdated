@@ -52,22 +52,33 @@
   const sel = document.querySelector("#color-controls");
   
   button.addEventListener('click', function (e) {
-    console.log("Color changed");
-    // firing the event properly according to StackOverflow
-    // http://stackoverflow.com/questions/2856513/how-can-i-trigger-an-onchange-event-manually
-    if ("createEvent" in document) {
-        var evt = document.createEvent("HTMLEvents");
-        evt.initEvent("change", false, true);
-        sel.dispatchEvent(evt);
-    }
-    else {
-        sel.fireEvent("onchange");
-    }
+    console.log("Changing colour...");
+    updateCol();
   });
     
     
   <!--document.querySelector('#color-controls').addEventListener('change', (event) => {-->
-  sel.addEventListener('onchange', (event) => {
+  function updateCol(){
+        const colorString = event.target.dataset.color;
+
+    
+    
+    
+    
+    if (!colorString) {
+      return;
+    }
+
+    const color = colorString.split(',')
+        .map(numberString => parseFloat(numberString));
+
+    console.log('Changing color to: ', color);
+    const [material] = modelViewerColor.model.materials;
+    material.pbrMetallicRoughness.setBaseColorFactor(color);
+  }
+    
+  
+  <!--sel.addEventListener('onchange', (event) => {
     const colorString = event.target.dataset.color;
 
     
@@ -85,6 +96,8 @@
     const [material] = modelViewerColor.model.materials;
     material.pbrMetallicRoughness.setBaseColorFactor(color);
   });
+    -->
+    
   </script>
 
 
