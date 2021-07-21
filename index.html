@@ -53,7 +53,21 @@
   
   button.addEventListener('click', function (e) {
     console.log("Changing colour...");
-    updateCol();
+    
+    
+    const colorString = sel.target.dataset.color;
+
+    if (!colorString) {
+      return;
+    }
+
+    const color = colorString.split(',')
+        .map(numberString => parseFloat(numberString));
+
+    console.log('Changing color to: ', color);
+    const [material] = modelViewerColor.model.materials;
+    material.pbrMetallicRoughness.setBaseColorFactor(color);
+    
   });
     
     
