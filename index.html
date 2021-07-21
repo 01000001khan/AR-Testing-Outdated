@@ -52,12 +52,23 @@
   const sel = document.querySelector("#color-controls");
   
   button.addEventListener('click', function (e) {
-    console.log("Changing colour...");
+    console.log("Changing colour");
     
+    if (document.createEventObject){
+      // dispatch for IE
+      var evt = document.createEventObject();
+      return sel.fireEvent('on'+event,evt)
+    }
+    else{
+      // dispatch for firefox + others
+      var evt = document.createEvent("HTMLEvents");
+      evt.initEvent(change, true, true ); // event type,bubbling,cancelable
+      return !sel.dispatchEvent(evt);
+    }
   });
     
     
-  <!--document.querySelector('#color-controls').addEventListener('change', (event) => {-->
+  <!--document.querySelector('#color-controls').addEventListener('click', (event) => {<!--this works for buttons-->
 
   
   <!--
