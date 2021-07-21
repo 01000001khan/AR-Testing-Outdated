@@ -13,16 +13,14 @@
     }
   </style>
 </head>
-<body>
+<body style="background-color:rgb(0, 20, 50);">
   <!--<model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate skybox-image="assets/spruit_sunrise_1k_HDR.hdr" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Embedded/DamagedHelmet.gltf">
   </model-viewer>-->
+  <!--Testing model.  Shiny Sci-fi robot helmet-->
 
-
-  
-  
-  
   <model-viewer id="color" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/persona7F.glb">
   <!-- Persona 7F -->      
+    <!--
     <div class="controls" ,="" id="color-controls">
       <button data-color="0.03,0.06,0.10,1">Blue</button>
       <button data-color="1,1,0.8,1">White</button>
@@ -31,12 +29,41 @@
       <button data-color="0,0.2,0.5,1">These can/should be in a drop down list</button>
 
     </div>
+    -->
+    
+    <select class="controls" ,="" id="color-controls" onchange="updateCol();" >
+      <option value="0.03,0.06,0.10,1">Blue</option>
+      <option value="1,1,0.8,1">White</option>
+      <option value="0.09,0.09,0.09,1" selected="selected">Gray</option>
+      <option value="1,0.5,0,1">Yellow Premium Finish</option>
+      <option value="0,0.2,0.5,1">Blue Premium Finish</option>
+      <option value="0.6,0,0,1">Red Premium Finish</option>
+    </select>
+    
   </model-viewer>
   <script>
     
   const modelViewerColor = document.querySelector("model-viewer#color");
 
-  document.querySelector('#color-controls').addEventListener('click', (event) => {
+  //called on change in colour selection list
+  function updateCol(){
+    const colorString = document.querySelector('#color-controls').value;
+    
+ 
+    if (!colorString) {
+      return;
+    }
+
+    const color = colorString.split(',')
+        .map(numberString => parseFloat(numberString));
+
+    console.log('Changing color to: ', color);
+    const [material] = modelViewerColor.model.materials;
+    material.pbrMetallicRoughness.setBaseColorFactor(color);
+  }
+  
+  /*
+  document.querySelector('#color-controls').addEventListener('click', (event) => {//this works for buttons
     const colorString = event.target.dataset.color;
 
     if (!colorString) {
@@ -49,7 +76,9 @@
     console.log('Changing color to: ', color);
     const [material] = modelViewerColor.model.materials;
     material.pbrMetallicRoughness.setBaseColorFactor(color);
-  });
+  };*/
+
+    
   </script>
 
 
