@@ -48,9 +48,6 @@
   const modelViewerColor = document.querySelector("model-viewer#color");
 
     
-  let applyPBRTexture = (channel, event) => {
-    material.pbrMetallicRoughness[channel].texture.source.setURI(event.target.value);
-  }
   //called on change in colour selection list
   function updateCol(){
     const colorString = document.querySelector('#color-controls').value;
@@ -67,14 +64,20 @@
     const material = modelViewerColor.model.materials[0];
     material.pbrMetallicRoughness.setBaseColorFactor(color);
     
+    
+    
+    let applyPBRTexture = (channel, path) => {
+      material.pbrMetallicRoughness[channel].texture.source.setURI(path);
+    }
+    
     var finishName = document.querySelector('#color-controls').text;
     
     if (finishName == "WoodTest"){
-      material.pbrMetallicRoughness[baseColorTexture].texture.source.setURI("/assets/textures/wood.jpg");
+      applyPBRTexture('baseColorTexture', "/assets/textures/wood.jpg");
     }
     else
     {
-       material.pbrMetallicRoughness[baseColorTexture].texture.source.setURI("/assets/textures/blank.jpg");
+      material.pbrMetallicRoughness[baseColorTexture].texture.source.setURI("/assets/textures/blank.jpg");
     }
     
   }
