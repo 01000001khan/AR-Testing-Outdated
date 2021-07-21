@@ -13,7 +13,7 @@
     }
   </style>
 </head>
-<body>
+<body style="background-color:rgb(0, 20, 50);">
   <!--<model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate skybox-image="assets/spruit_sunrise_1k_HDR.hdr" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Embedded/DamagedHelmet.gltf">
   </model-viewer>-->
 
@@ -42,15 +42,38 @@
       <option data-color="0,0.2,0.5,1">Blue Premium Finish</option>
       <option data-color="0.6,0,0,1">Red Premium Finish</option>
     </select>
+    <button id="update">Update Colour</button>
     
   </model-viewer>
   <script>
     
   const modelViewerColor = document.querySelector("model-viewer#color");
-
-  document.querySelector('#color-controls').addEventListener('click', (event) => {
+  const button = document.querySelector("#update");
+  const sel = document.querySelector("#color-controls");
+  
+  button.addEventListener('click', function (e) {
+    sel.options[1].selected = true;
+    
+    // firing the event properly according to StackOverflow
+    // http://stackoverflow.com/questions/2856513/how-can-i-trigger-an-onchange-event-manually
+    if ("createEvent" in document) {
+        var evt = document.createEvent("HTMLEvents");
+        evt.initEvent("change", false, true);
+        sel.dispatchEvent(evt);
+    }
+    else {
+        sel.fireEvent("onchange");
+    }
+  });
+    
+    
+  document.querySelector('#color-controls').addEventListener('change', (event) => {
     const colorString = event.target.dataset.color;
 
+    
+    
+    
+    
     if (!colorString) {
       return;
     }
