@@ -75,10 +75,12 @@
     console.log('Changing color to: ', color);
     const [material] = modelViewerColor.model.materials;
     material.pbrMetallicRoughness.setBaseColorFactor(color);
+    return;
   }
     
   
-  <!--sel.addEventListener('onchange', (event) => {
+  <!--
+  sel.addEventListener('onchange', (event) => {
     const colorString = event.target.dataset.color;
 
     
@@ -96,7 +98,7 @@
     const [material] = modelViewerColor.model.materials;
     material.pbrMetallicRoughness.setBaseColorFactor(color);
   });
-    -->
+  -->
     
   </script>
 
