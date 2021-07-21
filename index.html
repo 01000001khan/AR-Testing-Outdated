@@ -72,10 +72,7 @@
   <!--document.querySelector('#color-controls').addEventListener('click', (event) => {<!--this works for buttons-->
 
   function updateCol(){
-    alert("Test"); 
-    
-    var e = document.querySelector('#color-controls');
-    const colorString = e.options[e.selectedIndex].text;
+    const colorString = document.querySelector('#color-controls').value;
     
     
     
