@@ -39,7 +39,7 @@
       <option value="0,0.2,0.5,1">Blue Premium Finish</option>
       <option value="0.6,0,0,1">Red Premium Finish</option>
       
-      <option value="1,1,1,1">WoodTest</option>
+      <option value="0.4,0.1,0,1">WoodTest</option>
     </select>
     
   </model-viewer>
@@ -73,11 +73,11 @@
     var finishName = document.querySelector('#color-controls').text;
     
     if (finishName == "WoodTest"){
-      applyPBRTexture('baseColorTexture', "/assets/textures/wood.jpg");
+      applyPBRTexture('baseColorTexture', "/assets/textures/blank.jpg");
     }
     else
     {
-      material.pbrMetallicRoughness[baseColorTexture].texture.source.setURI("/assets/textures/wood.jpg");
+      material.pbrMetallicRoughness[baseColorTexture].texture.source.setURI("/assets/textures/blank.jpg");
     }
     
   }
