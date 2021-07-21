@@ -34,7 +34,7 @@
     </div>
     -->
     
-    <select class="controls" ,="" id="color-controls">
+    <select class="controls" ,="" id="color-controls" onchange="updateCol();">
       <option data-color="0.03,0.06,0.10,1">Blue</option>
       <option data-color="1,1,0.8,1">White</option>
       <option data-color="0.09,0.09,0.09,1">Gray</option>
@@ -71,6 +71,9 @@
     
   <!--document.querySelector('#color-controls').addEventListener('click', (event) => {<!--this works for buttons-->
 
+  function updateCol(){
+    alert("Test"); 
+  }
   
   $( "#color-controls" ).change(function() {
     alert( "Handler for .change() called." );
