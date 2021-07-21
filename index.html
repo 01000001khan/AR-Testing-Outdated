@@ -73,11 +73,26 @@
 
   function updateCol(){
     alert("Test"); 
+    
+    var e = document.getElementById("color-controls");
+    var colorString = e.options[e.selectedIndex].text;
+    
+    
+    
+    
+    if (!colorString) {
+      return;
+    }
+
+    const color = colorString.split(',')
+        .map(numberString => parseFloat(numberString));
+
+    console.log('Changing color to: ', color);
+    const [material] = modelViewerColor.model.materials;
+    material.pbrMetallicRoughness.setBaseColorFactor(color);
   }
   
-  $( "#color-controls" ).change(function() {
-    alert( "Handler for .change() called." );
-  });
+    /*
   sel.onChange = (event) => {
     const colorString = event.target.dataset.color;
 
@@ -95,7 +110,7 @@
     console.log('Changing color to: ', color);
     const [material] = modelViewerColor.model.materials;
     material.pbrMetallicRoughness.setBaseColorFactor(color);
-  };
+  };*/
 
     
   </script>
