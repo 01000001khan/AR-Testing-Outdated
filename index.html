@@ -69,6 +69,17 @@
     let applyPBRTexture = (channel, path) => {
       material.pbrMetallicRoughness[channel].texture.source.setURI(path);
     }
+    let createAndApplyTexture = async (channel, event) => {
+      if(event == "None"){
+        // Clears the texture.
+        material[channel].setTexture(null);
+      }else if(event) {
+        // Creates a new texture.
+        let texture = await modelViewerTexture.createTexture(event);
+        // Applies the new texture to the specified channel.
+        material[channel].setTexture(texture);
+      } 
+    }
     
     var finishName = document.querySelector('#color-controls').text;
     
@@ -78,10 +89,10 @@
     }
     else
     {
-      material.pbrMetallicRoughness[baseColorTexture].texture.source.setURI("/assets/textures/blank.jpg");
-      
-      let texture = await modelViewerTexture.createTexture("/assets/textures/wood.jpg");
-      material[channel].setTexture(texture);
+      material.pbrMetallicRoughness[baseColorTexture].texture.source.setURI("/assets/textures/wood.jpg");
+
+      createAndApplyTexture('baseColorTexture', "/assets/textures/wood.jpg");
+
     }
     
   }
