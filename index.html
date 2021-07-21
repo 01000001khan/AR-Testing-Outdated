@@ -14,11 +14,11 @@
   </style>
 </head>
 <body style="background-color:rgb(0, 20, 50);">
-  <!--<model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate skybox-image="assets/spruit_sunrise_1k_HDR.hdr" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Embedded/DamagedHelmet.gltf">
+  <!--<model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate skybox-image="assets/textures/spruit_sunrise_1k_HDR.hdr" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Embedded/DamagedHelmet.gltf">
   </model-viewer>-->
   <!--Testing model.  Shiny Sci-fi robot helmet-->
 
-  <model-viewer id="color" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/persona7F.glb">
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/persona7F.glb">
   <!-- Persona 7F -->      
     <!--
     <div class="controls" ,="" id="color-controls">
@@ -38,13 +38,15 @@
       <option value="1,0.5,0,1">Yellow Premium Finish</option>
       <option value="0,0.2,0.5,1">Blue Premium Finish</option>
       <option value="0.6,0,0,1">Red Premium Finish</option>
+      
+      <option value="0.4,0.1,0,1">WoodTest</option>
     </select>
     
   </model-viewer>
   <script>
     
-  const modelViewerColor = document.querySelector("model-viewer#color");
-
+  const modelViewerObject = document.getElementById("speaker");
+    
   //called on change in colour selection list
   function updateCol(){
     const colorString = document.querySelector('#color-controls').value;
@@ -58,9 +60,27 @@
         .map(numberString => parseFloat(numberString));
 
     console.log('Changing color to: ', color);
-    const [material] = modelViewerColor.model.materials;
+    
+    
+    let material = modelViewerObject.model.materials[0];
     material.pbrMetallicRoughness.setBaseColorFactor(color);
+    
+    
+    var finishName = document.querySelector('#color-controls').text;
+    
+    if (finishName == "WoodTest"){
+      console.log("Wood");
+    }
+    else
+    {
+      console.log("Not wood");
+      //material['baseColorTexture'].setTexture("/assets/textures/wood.jpg"); 
+      
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("/assets/textures/wood.jpg");
+    }
+    
   }
+
   
   /*
   document.querySelector('#color-controls').addEventListener('click', (event) => {//this works for buttons
