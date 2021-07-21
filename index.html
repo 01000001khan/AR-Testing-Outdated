@@ -37,7 +37,7 @@
     <select class="controls" ,="" id="color-controls" onchange="updateCol();">
       <option data-color="0.03,0.06,0.10,1">Blue</option>
       <option data-color="1,1,0.8,1">White</option>
-      <option data-color="0.09,0.09,0.09,1">Gray</option>
+      <option data-color="0.09,0.09,0.09,1" selected="selected">Gray</option>
       <option data-color="1,0.5,0,1">Yellow Premium Finish</option>
       <option data-color="0,0.2,0.5,1">Blue Premium Finish</option>
       <option data-color="0.6,0,0,1">Red Premium Finish</option>
@@ -74,8 +74,8 @@
   function updateCol(){
     alert("Test"); 
     
-    var e = document.getElementById("color-controls");
-    var colorString = e.options[e.selectedIndex].text;
+    var e = document.querySelector('#color-controls');
+    const colorString = e.options[e.selectedIndex].text;
     
     
     
