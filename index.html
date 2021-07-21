@@ -66,10 +66,10 @@
     material.pbrMetallicRoughness.setBaseColorFactor(color);
     
     
-    const materialT = modelViewerTexture.model.materials[0];
+    const materialT = modelViewerColor.model.materials[0];
     
     let applyPBRTexture = (channel, path) => {
-      materialT.pbrMetallicRoughness[channel].texture.source.setURI(path);
+      materialT.pbrMetallicRoughness[channel].texture.source.setURL(path);
     }
     let createAndApplyTexture = async (channel, event) => {
       if(event == "None"){
@@ -91,8 +91,8 @@
     }
     else
     {
-      createAndApplyTexture('baseColorTexture', "/assets/textures/wood.jpg");
-
+      materialT['baseColorTexture'].setTexture("/assets/textures/wood.jpg"); 
+      //applyPBRTexture('baseColorTexture', "/assets/textures/wood.jpg");
     }
     
   }
