@@ -49,7 +49,7 @@
     
   //called on change in colour selection list
   function updateCol(){
-    const colorString = document.querySelector('#color-controls').value;
+    const colorString = document.getElementById('color-controls').value;
     
  
     if (!colorString) {
@@ -66,17 +66,18 @@
     material.pbrMetallicRoughness.setBaseColorFactor(color);
     
     
-    var finishName = document.querySelector('#color-controls').text;
-    
-    if (finishName == "WoodTest"){
+    var finishName = document.getElementById('color-controls').text;
+    console.log(finishName);
+    if (finishName === "WoodTest"){
       console.log("Wood");
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("/AR-Testing/assets/textures/wood.jpg");
     }
     else
     {
       console.log("Not wood");
       //material['baseColorTexture'].setTexture("/assets/textures/wood.jpg"); 
       
-      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("/assets/textures/wood.jpg");
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("/AR-Testing/assets/textures/blank.JPG");
     }
     
   }
