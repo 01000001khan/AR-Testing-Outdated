@@ -51,7 +51,8 @@
   const button = document.querySelector("#update");
   const sel = document.querySelector("#color-controls");
   
-  button.addEventListener('click', function (e) {
+   
+  /*button.addEventListener('click', function (e) {
     console.log("Changing colour");
     
     if (document.createEventObject){
@@ -65,13 +66,15 @@
       evt.initEvent(change, true, true ); // event type,bubbling,cancelable
       return !sel.dispatchEvent(evt);
     }
-  });
+  });*/
     
     
   <!--document.querySelector('#color-controls').addEventListener('click', (event) => {<!--this works for buttons-->
 
   
-  <!--
+  $( "#color-controls" ).change(function() {
+    alert( "Handler for .change() called." );
+  });
   sel.onChange = (event) => {
     const colorString = event.target.dataset.color;
 
@@ -90,7 +93,7 @@
     const [material] = modelViewerColor.model.materials;
     material.pbrMetallicRoughness.setBaseColorFactor(color);
   };
-  -->
+
     
   </script>
 
