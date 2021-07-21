@@ -45,8 +45,8 @@
   </model-viewer>
   <script>
     
-  const modelViewerColor = document.querySelector("model-viewer#color");
-  const modelViewerColor = document.querySelector("model-viewer#texture");
+  const modelViewerColor = document.querySelector("model-viewer");
+  const modelViewerTexture = document.querySelector("model-viewer");
 
     
   //called on change in colour selection list
@@ -66,6 +66,7 @@
     material.pbrMetallicRoughness.setBaseColorFactor(color);
     
     
+    const material = modelViewerTexture.model.materials[0];
     
     let applyPBRTexture = (channel, path) => {
       material.pbrMetallicRoughness[channel].texture.source.setURI(path);
